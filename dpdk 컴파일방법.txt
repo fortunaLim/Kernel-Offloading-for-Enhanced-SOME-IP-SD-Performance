@@ -1,0 +1,41 @@
+
+gcc -o someip_dpdk someip_dpdk.c -I${RTE_SDK}/${RTE_TARGET}/include -L${RTE_SDK}/${RTE_TARGET}/lib -ldpdk
+
+sudo ./someip_dpdk -l 0-3 -n 4 --no-pci --vdev="net_pcap0,iface=ens33" -- -p 0x1
+
+
+
+
+
+처음 사용할 경우
+# Hugepage 설정
+echo 1024 | sudo tee /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages
+sudo mkdir -p /dev/hugepages
+sudo mount -t hugetlbfs nodev /dev/hugepages
+
+# 네트워크 인터페이스를 DPDK 모드로 변경 (예: ens33)
+sudo dpdk-devbind.py --status
+sudo modprobe vfio-pci
+sudo dpdk-devbind.py -b vfio-pci ens33
+
+패키지 설치법
+# 필요한 패키지 설치
+sudo apt update
+sudo apt install -y build-essential libnuma-dev python3-pip python3-pyelftools ninja-build meson pkg-config
+
+# DPDK 다운로드 (최신 안정 버전)
+wget https://fast.dpdk.org/rel/dpdk-23.11.tar.xz
+tar xf dpdk-23.11.tar.xz
+cd dpdk-23.11
+
+# DPDK 빌드 및 설치
+meson setup build
+cd build
+ninja
+sudo ninja install
+sudo ldconfig
+
+# 환경 변수 설정 (.bashrc에 추가)
+echo 'export PKG_CONFIG_PATH=/usr/local/lib/x86_64-linux-gnu/pkgconfig' >> ~/.bashrc
+source ~/.bashrc
+

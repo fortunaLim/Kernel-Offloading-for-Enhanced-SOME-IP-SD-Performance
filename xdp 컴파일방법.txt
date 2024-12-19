@@ -1,0 +1,15 @@
+
+# 컴파일
+clang -O2 -target bpf -c someip_sd_xdp.c -o someip_sd_xdp.o
+
+# 인터페이스에 로드 (예: ens33)
+sudo ip link set dev ens33 xdp obj someip_sd_xdp.o sec xdp
+
+# 로드 확인
+sudo ip link show ens33
+
+# 로그 확인
+sudo cat /sys/kernel/debug/tracing/trace_pipe
+
+# 언로드시
+sudo ip link set dev ens33 xdp off
