@@ -1,0 +1,41 @@
+{
+    "unicast" : "192.168.0.45", 
+    "logging" : {
+        "level" : "debug",
+        "console" : "true",
+        "file" : { "enable" : "false" }
+    },
+    "applications" : [
+        {
+            "name" : "TestServer",
+            "id" : "0x1277"
+        }
+    ],
+    "routing" : "TestServer",
+    "service-discovery" : {
+        "enable" : "true",
+        "multicast" : "224.244.224.245",
+        "port" : "30490",
+        "protocol" : "udp"
+    },
+    "services" : [
+        {
+            "service" : "0x1111",
+            "instance" : "0x2222",
+            "reliable" : "30510",
+            "unreliable" : "30509",
+            "eventgroups" : [
+                {
+                    "eventgroup" : "0x1",
+                    "events" : [
+                        {
+                            "event" : "0x8778",
+                            "is_field" : "true",
+                            "is_reliable" : "true"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

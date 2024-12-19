@@ -1,0 +1,4 @@
+/home/user/Desktop/vsomeip_test/build/CMakeFiles/server.dir
+/home/user/Desktop/vsomeip_test/build/CMakeFiles/client.dir
+/home/user/Desktop/vsomeip_test/build/CMakeFiles/edit_cache.dir
+/home/user/Desktop/vsomeip_test/build/CMakeFiles/rebuild_cache.dir

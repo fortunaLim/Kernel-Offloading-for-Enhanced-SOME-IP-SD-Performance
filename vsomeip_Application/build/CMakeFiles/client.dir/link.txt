@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/client.dir/TestClient.cpp.o -o client  -Wl,-rpath,/usr/local/lib /usr/local/lib/libvsomeip3.so.3.5.3 
